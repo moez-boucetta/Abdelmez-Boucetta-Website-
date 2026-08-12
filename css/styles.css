@@ -550,6 +550,22 @@ a {
     cursor: pointer;
 }
 
+.contact_status {
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #5E7091;
+    min-height: 1.2em;
+}
+
+.contact_status--success {
+    color: #16a34a;
+}
+
+.contact_status--error {
+    color: #dc2626;
+}
+
 @media (max-width: 900px) {
     .about {
         padding: 70px 0;

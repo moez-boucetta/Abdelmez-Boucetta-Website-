@@ -122,6 +122,8 @@
                 <h2 class="section_title">Contact Me</h2>
 
                 <form class="contact_form" id="contact-form">
+                    <input type="hidden" name="access_key" value="1fdcc50a-f072-465d-b4e8-84ca13cfc0d0">
+                    <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
                     <div class="contact_row">
                         <div class="contact_field">
                             <label for="contact-name">Name</label>
@@ -141,6 +143,7 @@
                         <textarea id="contact-message" name="message" rows="6" placeholder="Your message" required></textarea>
                     </div>
                     <button type="submit" class="hero_btn contact_btn">Send Message</button>
+                    <div class="contact_status" id="form-status" role="status"></div>
                 </form>
             </div>
         </div>

@@ -84,13 +84,44 @@ nerdImg.addEventListener('click', () => {
 });
 
 const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
 
 contactForm.addEventListener('submit', e => {
     e.preventDefault();
-    const name = contactForm.name.value.trim();
-    const email = contactForm.email.value.trim();
-    const subject = contactForm.subject.value.trim();
-    const message = contactForm.message.value.trim();
-    const mailto = `mailto:boucettamoez23@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`${name}\n${email}\n\n${message}`)}`;
-    window.location.href = mailto;
+
+    const formData = new FormData(contactForm);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    formStatus.textContent = 'Sending...';
+    formStatus.className = 'contact_status';
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async response => {
+            const data = await response.json();
+            if (response.status == 200) {
+                formStatus.textContent = data.message;
+                formStatus.className = 'contact_status contact_status--success';
+                contactForm.reset();
+            } else {
+                formStatus.textContent = data.message;
+                formStatus.className = 'contact_status contact_status--error';
+            }
+        })
+        .catch(() => {
+            formStatus.textContent = 'Something went wrong! Please try again.';
+            formStatus.className = 'contact_status contact_status--error';
+        })
+        .then(() => {
+            setTimeout(() => {
+                formStatus.textContent = '';
+            }, 5000);
+        });
 });
