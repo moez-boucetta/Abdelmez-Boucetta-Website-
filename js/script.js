@@ -49,8 +49,8 @@ const skills = {
     backend: ['python', 'node'],
     databases: ['mysql', 'mongodb', 'firebase', 'supabase', 'convex'],
     mobile: ['flutter', 'dart'],
-    tools: ['git', 'github', 'vscode', 'linux'],
-    UI: ['figma', 'canva', 'gimp', 'photopea']
+    tools: ['git', 'github', 'vscode', 'linux', 'obsidian', 'notion'],
+    UI: ['figma', 'canva', 'gimp', 'photopea', 'krita', 'inkspace']
 };
 
 const skillsGrid = document.getElementById('skills-grid');
@@ -77,6 +77,21 @@ renderSkills('frontend');
 
 const nerdImg = document.querySelector('.skills_mobile_img');
 const nerdSound = new Audio('sound/aah.mp3');
+
+const mobileBtn = document.querySelector('.skills_btn[data-category="mobile"]');
+const frontendBtn = document.querySelector('.skills_btn[data-category="frontend"]');
+const mobileMq = window.matchMedia('(max-width: 600px)');
+
+function positionNerd(e) {
+    if (e.matches) {
+        frontendBtn.appendChild(nerdImg);
+    } else {
+        mobileBtn.appendChild(nerdImg);
+    }
+}
+
+mobileMq.addEventListener('change', positionNerd);
+positionNerd(mobileMq);
 
 nerdImg.addEventListener('click', () => {
     nerdSound.currentTime = 0;
