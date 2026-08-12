@@ -8,6 +8,24 @@ body {
     background-color: white;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: white transparent;
+}
+
 ::selection {
     background-color: #5E7091;
     color: white;
